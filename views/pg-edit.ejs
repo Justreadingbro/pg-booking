@@ -1,0 +1,53 @@
+<%- include('partials/head', { title: 'Edit PG Listing', user: user }) %>
+<div class="container main-content mt-5">
+  <h2>Edit Listing</h2>
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+    <% errors.forEach(function(error) { %>
+      <div class="alert alert-danger"><%= error.msg %></div>
+    <% }); %>
+  <% } %>
+  <form action="/pg/edit/<%= listing._id %>" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title:</label>
+      <input type="text" name="title" class="form-control" value="<%= listing.title %>" required />
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">PG For:</label>
+      <select name="gender" class="form-select">
+        <option value="girls" <%= listing.gender === 'girls' ? 'selected' : '' %>>Girls</option>
+        <option value="boys" <%= listing.gender === 'boys' ? 'selected' : '' %>>Boys</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea name="description" class="form-control" rows="3"><%= listing.description %></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address:</label>
+      <input type="text" name="address" class="form-control" value="<%= listing.address %>" required />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" name="wifi" class="form-check-input" id="wifi" <%= listing.wifi ? 'checked' : '' %> />
+      <label class="form-check-label" for="wifi">Wi-Fi Available</label>
+    </div>
+    <div class="mb-3">
+      <label for="monthlyFees" class="form-label">Monthly Fees:</label>
+      <input type="number" name="monthlyFees" class="form-control" value="<%= listing.monthlyFees %>" required />
+    </div>
+    <div class="mb-3">
+      <label for="foodFees" class="form-label">Food Fees:</label>
+      <input type="number" name="foodFees" class="form-control" value="<%= listing.foodFees %>" />
+    </div>
+    <div class="mb-3">
+      <label for="roomsAvailable" class="form-label">Rooms Available:</label>
+      <input type="number" name="roomsAvailable" class="form-control" value="<%= listing.roomsAvailable %>" required min="1" />
+    </div>
+    <div class="mb-3">
+      <label for="images" class="form-label">Update Images (optional):</label>
+      <input type="file" name="images" class="form-control" multiple accept="image/*" />
+      <p class="small">Leave blank to keep current images.</p>
+    </div>
+    <button type="submit" class="btn btn-success">Update Listing</button>
+  </form>
+</div>
+<%- include('partials/footer') %>

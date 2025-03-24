@@ -1,0 +1,28 @@
+<%- include('partials/head', { title: 'Search Results', user: user }) %>
+<div class="container main-content mt-5">
+  <h2 class="mb-4">Search Results</h2>
+  <% if (listings && listings.length > 0) { %>
+    <div class="row">
+      <% listings.forEach(listing => { %>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <% if (listing.images && listing.images.length > 0) { %>
+              <img src="/uploads/<%= listing.images[0] %>" class="card-img-top" alt="Room Image">
+            <% } else { %>
+              <img src="https://via.placeholder.com/350x200?text=No+Image" class="card-img-top" alt="No Image">
+            <% } %>
+            <div class="card-body">
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text"><%= listing.address %></p>
+              <p class="card-text">Monthly Fees: ₹<%= listing.monthlyFees %></p>
+              <a href="/pg/<%= listing._id %>" class="btn btn-sm btn-outline-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p>No listings found. Try adjusting your search.</p>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

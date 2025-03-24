@@ -1,0 +1,24 @@
+/* styles.css */
+
+/* Apply a full-page background image */
+body {
+    background: url('https://images.unsplash.com/photo-1509395062183-67c5ad6fafa1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')
+      no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+  }
+  
+  /* Make the main content area slightly transparent */
+  .main-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+  
+  /* Navbar overrides */
+  .navbar-brand {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  

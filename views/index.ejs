@@ -1,0 +1,29 @@
+<%- include('partials/head', { title: 'Home', user: user }) %>
+<div class="container main-content mt-5">
+  <h1 class="text-center mb-4">Welcome to PG Booking</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form action="/pg/search" method="get" class="row g-3">
+        <div class="col-md-6">
+          <input
+            type="text"
+            name="address"
+            class="form-control"
+            placeholder="Search by address"
+          />
+        </div>
+        <div class="col-md-4">
+          <select name="gender" class="form-select">
+            <option value="">Select PG Type</option>
+            <option value="girls">Girls</option>
+            <option value="boys">Boys</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

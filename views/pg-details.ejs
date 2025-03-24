@@ -1,0 +1,33 @@
+<%- include('partials/head', { title: listing.title, user: user }) %>
+<div class="container main-content mt-5">
+  <h1><%= listing.title %></h1>
+  <p><strong>Address:</strong> <%= listing.address %></p>
+  <p><strong>Gender:</strong> <%= listing.gender %></p>
+  <p><strong>Monthly Fees:</strong> ₹<%= listing.monthlyFees %></p>
+  <% if (listing.foodFees) { %>
+    <p><strong>Food Fees:</strong> ₹<%= listing.foodFees %></p>
+  <% } %>
+  <p><strong>Wi-Fi:</strong> <%= listing.wifi ? 'Yes' : 'No' %></p>
+  <p><strong>Description:</strong> <%= listing.description %></p>
+  <p><strong>Rooms Available:</strong> <%= listing.roomsAvailable %></p>
+  <!-- Images -->
+  <div class="row">
+    <% if (listing.images && listing.images.length > 0) { %>
+      <% listing.images.forEach(img => { %>
+        <div class="col-md-4 mb-3">
+          <img src="/uploads/<%= img %>" class="img-fluid" alt="Room Image" />
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No images available.</p>
+    <% } %>
+  </div>
+
+  <!-- Booking Button -->
+  <% if (user && user.role === 'seeker') { %>
+    <form action="/booking/book/<%= listing._id %>" method="post">
+      <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+  <% } %>
+</div>
+<%- include('partials/footer') %>
