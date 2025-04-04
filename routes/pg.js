@@ -43,7 +43,7 @@ router.get('/add', ensureAuthenticated, (req, res) => {
     req.flash('error_msg', 'Only owners can add listings');
     return res.redirect('/pg/dashboard');
   }
-  res.render('pg-add');
+  res.render('pg-add', { user: req.user });
 });
 
 // Handle new PG listing submission
